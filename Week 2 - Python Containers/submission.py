@@ -1,7 +1,7 @@
 # @author: Landon Volkmann
 
 # Imports
-from typing import List
+from typing import List, Dict
 
 
 # Q1
@@ -60,28 +60,60 @@ def string_alternative(some_str: str) -> str:
     return some_str[::2]
 
 
+def string_alternative_2(some_str: str) -> str:
+    """
+    :param some_str:
+    :return: every other letter of string passed
+    """
+
+    str_alt = ""
+    for i, c in enumerate(some_str):
+        if i % 2 == 0:
+            str_alt += c
+    return str_alt
+
+
 # Q3
 
-def find_word_count(file_name: str):
+def find_word_count(file_name: str) -> Dict[str, int]:
     """
-    print word_count in a file for each line
+    Get word_count in a file for each line
     :param file_name:
-    :return: None
+    :return: Dict of str:int representing word count for the file
     """
     try:
-        word_count_dict = {}
+        word_count_dict = dict()
         fh = open(file=file_name, mode='r')
         for line in fh:
             for word in line.split(sep=" "):
                 word = word.strip()
                 word_count_dict[word] = word_count_dict.get(word, 0) + 1
-        for word, count in word_count_dict.items():
-            print(word, ":", count)
+        return word_count_dict
     except FileNotFoundError:
         print("{} could not be found".format(file_name))
+
+
+def append_word_counts_to_file(file_name: str, word_count_dict: Dict[str, int]):
+    """
+    Append word counts to the bottom of the file
+    :param file_name:
+    :param word_count_dict:
+    :return: None
+    """
+    try:
+        fh = open(file=file_name, mode='a')
+        fh.write("\n\n" + ("=" * 10) + "\n" + "WORD COUNTS:\n")
+        for word, count in word_count_dict.items():
+            fh.write(word + " : " + str(count) + "\n")
+    except FileNotFoundError:
+        print("{} could not be found".format(file_name))
+
+
+def run_word_count_program(file_name: str):
+    append_word_counts_to_file(file_name, find_word_count(file_name))
 
 
 if __name__ == "__main__":
     run_weights_program()
     print("\nOUT:", string_alternative(input("IN: ")))
-    find_word_count("input.txt")
+    run_word_count_program("input.txt")
