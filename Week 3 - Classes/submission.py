@@ -10,6 +10,7 @@ import requests
 # Question 1: Employee Class
 
 class Employee(object):
+
     EMPLOYEE_COUNT = 0
 
     def __init__(self, name: str, family: str, department: str):
@@ -60,6 +61,7 @@ class FullTimeEmployee(Employee):
 # Question 2: Web Scraping
 
 def print_title(url: str):
+    """Prints title of given url"""
     html = requests.get(url)
     bs_obj = BeautifulSoup(html.content, "html.parser")
     contents = """
@@ -69,6 +71,7 @@ def print_title(url: str):
 
 
 def save_links(url: str, output_file_name: str):
+    """Saves all links of given url to outbound file"""
     html = requests.get(url)
     bs_obj = BeautifulSoup(html.content, "html.parser")
     out = ""
@@ -81,7 +84,11 @@ def save_links(url: str, output_file_name: str):
 
 # Question 3: Numpy
 
-def get_random_matrix(row, col, min_lim, max_lim):
+def random_then_replace(row: int, col: int, min_lim: int, max_lim: int):
+    """
+    Generates random array of specified dimensions and values
+    Replaces each row maximum with 0
+    """
 
     matrix = np.random.randint(min_lim, max_lim, row*col)
     matrix = matrix.reshape(row, col)
@@ -91,12 +98,12 @@ def get_random_matrix(row, col, min_lim, max_lim):
 
     print()
     print("Replaced")
+
     # get max by row and convert from (n, ) -> (n, 1)
     row_maxes = matrix.max(axis=1).reshape(-1, 1)
     matrix[:] = np.where(matrix == row_maxes, 0, matrix)
-    print(matrix)
 
-    return matrix
+    print(matrix)
 
 
 if __name__ == "__main__":
@@ -119,4 +126,4 @@ if __name__ == "__main__":
     save_links(url_name, "output.txt")
 
     # Question 3 test
-    get_random_matrix(3, 5, 0, 20)
+    random_then_replace(3, 5, 0, 20)
