@@ -2,9 +2,7 @@
 
 # imports
 import numpy as np
-import random
 import gc
-
 from bs4 import BeautifulSoup
 import requests
 
@@ -61,13 +59,12 @@ class FullTimeEmployee(Employee):
 
 # Question 2: Web Scraping
 
-def print_contents(url: str):
+def print_title(url: str):
     html = requests.get(url)
     bs_obj = BeautifulSoup(html.content, "html.parser")
     contents = """
-    title: {}
-    links: {}
-    """.format(bs_obj.h1, [link.get("href") for link in bs_obj.find_all("a")])
+    {}
+    """.format(bs_obj.title)
     print(contents)
 
 
@@ -85,18 +82,26 @@ def save_links(url: str, output_file_name: str):
 # Question 3: Numpy
 
 def get_random_matrix(row, col, min_lim, max_lim):
-    random_numbers = []
-    for _ in range(row * col):
-        random_numbers.append(random.randrange(min_lim, max_lim + 1))
-    matrix = np.array(random_numbers)
-    matrix.reshape(row, col)
+
+    matrix = np.random.randint(min_lim, max_lim, row*col)
+    matrix = matrix.reshape(row, col)
+
+    print("Original:")
+    print(matrix)
+
+    print()
+    print("Replaced")
+    # get max by row and convert from (n, ) -> (n, 1)
+    row_maxes = matrix.max(axis=1).reshape(-1, 1)
+    matrix[:] = np.where(matrix == row_maxes, 0, matrix)
+    print(matrix)
 
     return matrix
 
 
 if __name__ == "__main__":
-    # Question 1 test
 
+    # Question 1 test
     emp1 = Employee("Landon", "none", "IT")
     emp2 = Employee("Trevor", "some", "IT")
 
@@ -109,10 +114,9 @@ if __name__ == "__main__":
     print(FullTimeEmployee.get_average_salary())
 
     # Question 2 test
-    link = "https://en.wikipedia.org/wiki/Deep_learning"
-    print_contents(link)
-    save_links(link, "output.txt")
+    url_name = "https://en.wikipedia.org/wiki/Deep_learning"
+    print_title(url_name)
+    save_links(url_name, "output.txt")
 
     # Question 3 test
-
-    print(get_random_matrix(3, 5, 0, 20))
+    get_random_matrix(3, 5, 0, 20)
