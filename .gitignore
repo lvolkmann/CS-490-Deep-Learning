@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/.idea/
+/Week 3 - Classes/.idea/
+/Week 4 - Classification/.idea/misc.xml
+/Week 4 - Classification/.idea/modules.xml
+/Week 4 - Classification/.idea/Python_Lesson6.iml
+/Week 4 - Classification/.idea/workspace.xml
