@@ -115,5 +115,5 @@ def run_word_count_program(file_name: str):
 
 if __name__ == "__main__":
     run_weights_program()
-    print("\nOUT:", string_alternative(input("IN: ")))
+    print("\nOUT:", string_alternative_2(input("IN: ")))
     run_word_count_program("input.txt")
