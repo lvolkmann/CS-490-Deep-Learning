@@ -88,6 +88,11 @@ y_cluster_kmeans = km.predict(x)
 score = metrics.silhouette_score(x, y_cluster_kmeans)
 print("PCA:", score)
 
+plt.scatter(x[0], x[1], c=y_cluster_kmeans, s=50, cmap='viridis')
+centers = km.cluster_centers_
+plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
+plt.show()
+
 # df2 = pd.DataFrame(data=x_pca)
 # finaldf = pd.concat([df2,dataset[['CREDIT_LIMIT']]],axis=1)
 # print(finaldf)
