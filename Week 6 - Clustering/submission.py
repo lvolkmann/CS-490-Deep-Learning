@@ -78,7 +78,7 @@ plt.xlabel('Number of Clusters')
 plt.ylabel('Wcss')
 plt.show()
 
-nclusters = 4 # this is the k in kmeans
+nclusters = 3 # this is the k in kmeans
 
 km = KMeans(n_clusters=nclusters)
 km.fit(x)
