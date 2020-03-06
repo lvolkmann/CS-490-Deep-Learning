@@ -79,21 +79,6 @@ predicted = clf.predict(X_test_tfidf)
 score = metrics.accuracy_score(twenty_test.target, predicted)
 print("MultinomialNB + Bigram + Stopword: " + str(score))
 
-# # TO KNN
-# from sklearn kn
-# tfidf_Vect = TfidfVectorizer()
-# X_train_tfidf = tfidf_Vect.fit_transform(twenty_train.data)
-# # print(tfidf_Vect.vocabulary_)
-# clf = MultinomialNB()
-# clf.fit(X_train_tfidf, twenty_train.target)
-#
-# twenty_test = fetch_20newsgroups(subset='test', shuffle=True)
-# X_test_tfidf = tfidf_Vect.transform(twenty_test.data)
-#
-# predicted = clf.predict(X_test_tfidf)
-#
-# score = metrics.accuracy_score(twenty_test.target, predicted)
-# print(score)
 
 # PT II
 # Credit:https://stackoverflow.com/questions/1936466/beautifulsoup-grab-visible-webpage-text
