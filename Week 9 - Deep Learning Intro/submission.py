@@ -1,3 +1,4 @@
+# @author Landon Volkmann
 import pandas
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation
