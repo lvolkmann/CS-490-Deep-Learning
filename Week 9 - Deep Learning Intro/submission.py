@@ -7,7 +7,6 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np
 
-
 # QUESTION 1
 # Adding Dense layers to the existing source code
 
@@ -27,6 +26,7 @@ loss, accuracy = my_first_nn.evaluate(X_test, Y_test)
 
 print("LOSS: {}".format(loss))
 print("ACCURACY: {}".format(accuracy))
+input("Press any key to continue...")
 
 # Now the same model again with more Dense layers
 
@@ -43,6 +43,7 @@ loss2, accuracy2 = my_first_nn.evaluate(X_test, Y_test)
 
 print("NEW LOSS: {} CHANGE: {}".format(loss2, loss2 - loss))
 print("NEW ACCURACY: {} CHANGE: {}".format(accuracy2, accuracy2 - accuracy))
+input("Press any key to continue...")
 
 # Now the same model again with more epochs
 
@@ -59,7 +60,7 @@ loss3, accuracy3 = my_first_nn.evaluate(X_test, Y_test)
 
 print("NEW LOSS: {} CHANGE: {}".format(loss3, loss3 - loss2))
 print("NEW ACCURACY: {} CHANGE: {}".format(accuracy3, accuracy3 - accuracy2))
-
+input("Press any key to continue...")
 
 # QUESTION 2
 # changing the data set
@@ -72,15 +73,15 @@ dataset_df["diagnosis"] = dataset_df["diagnosis"].replace('B', 0)
 dataset = dataset_df.values
 
 
-X_train, X_test, Y_train, Y_test = train_test_split(dataset[:,2:31], dataset[:,1],
+X_train, X_test, Y_train, Y_test = train_test_split(dataset[:,2:], dataset[:,1],
                                                    test_size=0.25, random_state=87)
 np.random.seed(155)
 my_first_nn = Sequential() # create model
 
 # we now have a larger input dimension
-my_first_nn.add(Dense(20, input_dim=29, activation='relu')) # hidden layer
-my_first_nn.add(Dense(20, input_dim=29, activation='relu')) # hidden layer
-my_first_nn.add(Dense(20, input_dim=29, activation='relu')) # hidden layer
+my_first_nn.add(Dense(20, input_dim=30, activation='relu')) # hidden layer
+my_first_nn.add(Dense(20, input_dim=30, activation='relu')) # hidden layer
+my_first_nn.add(Dense(20, input_dim=30, activation='relu')) # hidden layer
 my_first_nn.add(Dense(1, activation='sigmoid')) # output layer
 my_first_nn.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
 my_first_nn_fitted = my_first_nn.fit(X_train, Y_train, epochs=100,
@@ -90,10 +91,9 @@ loss, accuracy = my_first_nn.evaluate(X_test, Y_test)
 
 print("LOSS: {}".format(loss))
 print("ACCURACY: {}".format(accuracy))
-
+input("Press any key to continue...")
 
 # QUESTION 3
-# TODO: normalize
 
 # Normalizing imports
 from sklearn.preprocessing import StandardScaler
@@ -116,13 +116,13 @@ dataset[:,2:] = sc.transform(dataset[:,2:])
 print("AFTER NORMALIZATION")
 print(dataset[:,2:])
 
-X_train, X_test, Y_train, Y_test = train_test_split(dataset[:,2:31], dataset[:,1],
+X_train, X_test, Y_train, Y_test = train_test_split(dataset[:,2:], dataset[:,1],
                                                     test_size=0.25, random_state=87)
 np.random.seed(155)
 my_first_nn = Sequential() # create model
-my_first_nn.add(Dense(20, input_dim=29, activation='relu')) # hidden layer
-my_first_nn.add(Dense(20, input_dim=29, activation='relu')) # hidden layer
-my_first_nn.add(Dense(20, input_dim=29, activation='relu')) # hidden layer
+my_first_nn.add(Dense(20, input_dim=30, activation='relu')) # hidden layer
+my_first_nn.add(Dense(20, input_dim=30, activation='relu')) # hidden layer
+my_first_nn.add(Dense(20, input_dim=30, activation='relu')) # hidden layer
 my_first_nn.add(Dense(1, activation='sigmoid')) # output layer
 my_first_nn.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
 my_first_nn_fitted = my_first_nn.fit(X_train, Y_train, epochs=100,
