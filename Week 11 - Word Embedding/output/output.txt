@@ -1,0 +1,30 @@
+Simple model on IMDB data set
+LOSS: 0.43630970106601713
+ACCURACY: 0.879040002822876
+
+
+Simple model on IMDB data set
+LOSS: 0.32579718297958377
+ACCURACY: 0.8763999938964844
+
+
+Simple model + embedded layer on IMDB data set
+NEW LOSS: 0.28294237694740293 CHANGE: -0.04285480603218084
+NEW ACCURACY: 0.88264000415802 CHANGE: 0.0062400102615356445
+
+
+Simple model on news data set
+LOSS: 0.5831772812519364
+ACCURACY: 0.8419936299324036Making prediction on single news file...
+From: banschbach@vms.ocom.okstate.edu
+Subject: Re: Candida(yeast) Bloom, Fact or Fiction
+Organization: OSU College of Osteopathic Medicine
+Lines: 91
+Nntp-Posting-Host: vms.ocom.okstate.edu
+
+In article <1rp8p1$2d3@usenet.INS.CWRU.Edu>, esd3@po.CWRU.Edu (Elisabeth S. Davidson) writes:
+> 
+> In a previous article, banschbach@vms.ocom.okstate.edu () says:
+>>least a few "enlightened" physicians practicing in the U.S.  It's really 
+>>too bad that most U.S. medical schools don't cover nutrition because  ...
+Expected:sci.medModel prediction: sci.med
