@@ -9,11 +9,14 @@ input_img = Input(shape=(784,))
 # "encoded" is the encoded representation of the input
 encoded = Dense(encoding_dim, activation='relu')(input_img)
 
-# one more hidden layer
-encoded = Dense(encoding_dim, activation='relu')(encoded)
+# make deep
+encoded = Dense(int(encoding_dim /2), activation='relu')(encoded)
+encoded = Dense(int(encoding_dim /4), activation='relu')(encoded) # middle layer
+decoded = Dense(int(encoding_dim /2), activation='relu')(encoded)
 
 # "decoded" is the lossy reconstruction of the input
-decoded = Dense(784, activation='sigmoid')(encoded)
+decoded = Dense(784, activation='sigmoid')(decoded)
+
 # this model maps an input to its reconstruction
 autoencoder = Model(input_img, decoded)
 # this model maps an input to its encoded representation
