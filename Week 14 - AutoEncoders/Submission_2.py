@@ -35,16 +35,21 @@ history = autoencoder.fit(x_train_noisy, x_train,
 
 
 # visualize
+model_name = "denoisening_autoencoder"
 
 from matplotlib import pyplot as plt
 
 plt.imshow(x_test[1].reshape(28,28))
 plt.title("Input")
+file_name = model_name + "_input.png"
+plt.savefig("output\\" + file_name)
 plt.show()
 
 
 plt.imshow(x_test_noisy[1].reshape(28,28))
 plt.title("Noisy Input")
+file_name = model_name + "_noisy_input.png"
+plt.savefig("output\\" + file_name)
 plt.show()
 
 x = x_test_noisy[[1],:]
@@ -53,9 +58,11 @@ prediction = autoencoder.predict(x)
 
 plt.imshow(prediction.reshape(28,28))
 plt.title("Reconstruction")
+file_name = model_name + "_reconstruction.png"
+plt.savefig("output\\" + file_name)
 plt.show()
 
-model_name = "denosing_autoencoder"
+
 print("Rendering Loss/Acc Trends...")
 for key in history.history:
     plt.plot(history.history[key])

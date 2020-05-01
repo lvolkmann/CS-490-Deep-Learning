@@ -28,10 +28,14 @@ x_test = x_test.reshape((len(x_test), np.prod(x_test.shape[1:])))
 
 # visualize
 
+model_name = "encoder"
+
 from matplotlib import pyplot as plt
 
 plt.imshow(x_test[1].reshape(28,28))
 plt.title("Image to Be Encoded")
+file_name = model_name + "_to_be_encoded.png"
+plt.savefig("output\\" + file_name)
 plt.show()
 
 
@@ -41,4 +45,6 @@ prediction = encoder.predict(x)
 
 plt.imshow(prediction)
 plt.title("Image Encoded")
+file_name = model_name + "_encoded.png"
+plt.savefig("output\\" + file_name)
 plt.show()

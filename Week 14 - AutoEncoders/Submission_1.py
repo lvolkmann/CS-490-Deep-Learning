@@ -39,11 +39,14 @@ history = autoencoder.fit(x_train, x_train,
 
 
 # visualize
+model_name = "autoencoder"
 
 from matplotlib import pyplot as plt
 
 plt.imshow(x_test[1].reshape(28,28))
 plt.title("Image to Be Encoded")
+file_name = model_name + "_to_be_encoded.png"
+plt.savefig("output\\" + file_name)
 plt.show()
 
 
@@ -53,9 +56,10 @@ prediction = autoencoder.predict(x)
 
 plt.imshow(prediction.reshape(28,28))
 plt.title("Image Decoded")
+file_name = model_name + "_decoded.png"
+plt.savefig("output\\" + file_name)
 plt.show()
 
-model_name = "autoencoder"
 print("Rendering Loss/Acc Trends...")
 for key in history.history:
     plt.plot(history.history[key])
